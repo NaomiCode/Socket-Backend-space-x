@@ -130,12 +130,13 @@ class Game(object):
     def ref_link(self, index: int):
         return self.OnlineUsers[index].get_ref_link()
 
+
 #
 # game = Game()
-#
-#
+
+
 # game.user_go_online(User(2))
-#
+
 # game.run_forever()
 # time.sleep(3)
 # print("energy", game.OnlineUsers[0].energy.energy)
@@ -158,3 +159,105 @@ class Game(object):
 # print("limit upgraded!")
 # time.sleep(10)
 # print("balance after 30", game.balance(0))
+
+
+game = Game()
+game.user_go_online(User(777))
+
+game.run_forever()
+
+print("energy", game.OnlineUsers[0].energy.energy)
+
+me = game.OnlineUsers[0]
+
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_limit(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_speed(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+game.upgrade_multi_tap(0)
+
+def tap():
+    me.tap()
+    # print(me.energy.energy, "energy")
+    # print(me.balance.balance, "balance")
+
+
+def up_multi():
+    game.upgrade_multi_tap(0)
+    print("multi level:", game.multi_tap(0))
+
+
+def up_limit():
+    game.upgrade_limit(0)
+    print("energy limit level:", game.energy_limit(0))
+
+
+def up_speed():
+    game.upgrade_speed(0)
+    print("energy speed level:", game.energy_speed(0))
+
+
+def guru():
+    game.activate_guru(0)
+    print("GUUURUUUU")
+
+
+def refill():
+    me.refill.activate()
+    print("refill level:", me.energy.energy)
+
+
+def tap_auto():
+    c = 0
+    while True:
+        tap()
+        if not c :
+            guru()
+        if c%5000000:
+            print(me.energy.energy, "energy")
+            print(me.balance.balance, "balance")
+
+        c+=1
+
+tap_auto()
+# todo: balance is minus when upgraded

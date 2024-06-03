@@ -16,12 +16,12 @@ class Task(object):
 
 
 def get_tasks():
-    response = requests.get("http://192.168.88.167:8002/api/manager/tasks")
-    tasks = []
-    for item in response.json():
-        tasks.append(Task(title=item['title'], description=item['title'], url=item['url'], reward=item['amount']))
-    return tasks
-
+    # response = requests.get("http://192.168.88.167:8002/api/manager/tasks")
+    # tasks = []
+    # for item in response.json():
+    #     tasks.append(Task(title=item['title'], description=item['title'], url=item['url'], reward=item['amount']))
+    # return tasks
+    return []
 
 def new_task(title: str, description: str, url: str, reward: int):
     response = requests.post("http://192.168.88.167:8002/api/manager/tasks",

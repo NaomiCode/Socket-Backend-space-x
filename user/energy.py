@@ -19,13 +19,19 @@ class Energy(object):
 
     def energy_modifier(self, amount_out: int = None, amount_in: int = None):
         if amount_out:
-            if amount_out >= 0:
+            if amount_out > 0:
                 return self.energy - amount_out >= 0
+            elif amount_out == 0:
+                return True
+            if amount_out < 0:
+                return False
         elif amount_in:
             if amount_in + self.energy >= self.limit * 500:
                 return self.limit * 500
             else:
                 return self.energy + amount_in >= 0
+        else:
+            return False
 
     def transaction_out(self, amount_out: int):
         if self.energy_modifier(amount_out=amount_out):

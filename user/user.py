@@ -48,26 +48,42 @@ def update_data(data: UserData):
 
 
 def get_user_data(user_id: int) -> UserData:
-    resp = requests.get("http://192.168.88.167:8002/api/store/{}".format(user_id))
-    data = resp.json()
-    return UserData(
-        user_id=data['user_id'],
-        energy=data['energy'],
-        balance=data['balance'],
-        total_amount=data['total_amount'],
-        total_clicks=data['total_clicks'],
-        last_clicks=data['last_clicks'],
-        limit_level=data['limit_level'],
-        speed_level=data['speed_level'],
-        multi_tap_level=data['multi_tap_level'],
-        auto_bot=data['auto_bot'],
-        guru_used=data['guru_used'],
-        refill_used=data['refill_used'],
-        claimed_tasks=data['claimed_tasks'],
-        claimed_leagues=data['claimed_leagues'],
-        claimed_ref=data['claimed_ref'],
-        referrals=data['referral'],
-    )
+    # resp = requests.get("http://192.168.88.167:8002/api/store/{}".format(user_id))
+    # data = resp.json()
+    # return UserData(
+    #     user_id=data['user_id'],
+    #     energy=data['energy'],
+    #     balance=data['balance'],
+    #     total_amount=data['total_amount'],
+    #     total_clicks=data['total_clicks'],
+    #     last_clicks=data['last_clicks'],
+    #     limit_level=data['limit_level'],
+    #     speed_level=data['speed_level'],
+    #     multi_tap_level=data['multi_tap_level'],
+    #     auto_bot=data['auto_bot'],
+    #     guru_used=data['guru_used'],
+    #     refill_used=data['refill_used'],
+    #     claimed_tasks=data['claimed_tasks'],
+    #     claimed_leagues=data['claimed_leagues'],
+    #     claimed_ref=data['claimed_ref'],
+    #     referrals=data['referral'],
+    # )
+    return UserData(user_id=777,
+                    energy=1000,
+                    balance=5000000,
+                    total_amount=0,
+                    total_clicks=0,
+                    last_clicks=0,
+                    limit_level=2,
+                    speed_level=1,
+                    multi_tap_level=1,
+                    auto_bot=False,
+                    guru_used=0,
+                    refill_used=0,
+                    claimed_tasks=[],
+                    claimed_leagues=[],
+                    claimed_ref=[],
+                    referrals=[])
 
 
 class User:
@@ -99,7 +115,7 @@ class User:
 
     def tap(self):
         balance_mul, energy_mul = self.multiplier_balance_energy()
-        if self.energy.transaction_out(self.multi_tap.current_level * energy_mul):
+        if self.energy.transaction_out(self.multi_tap.current_level * energy_mul) or not energy_mul:
             self.balance.transaction_in(self.multi_tap.current_level * balance_mul)
             self.league.add_amount(self.multi_tap.current_level * balance_mul)
             self.last_clicks = int(time.time() / 1000)
