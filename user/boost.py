@@ -19,3 +19,6 @@ class Boost(object):
             return True
         else:
             return False
+
+    def value(self):
+        return self.current_level
